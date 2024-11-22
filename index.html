@@ -230,7 +230,7 @@
         document.getElementById('mq9Value').textContent = data.coPPM !== undefined ? data.coPPM : 'N/A';     
         document.getElementById('mq135Value').textContent = data.airQualityPPM !== undefined ? data.airQualityPPM : 'N/A';
         document.getElementById('humidityValue').textContent = data.humidity !== undefined ? data.humidity : 'N/A';        
-        document.getElementById('dsmValue').textContent = data.dsm501aConcentration !== undefined ? data.dsm501aConcentration : 'N/A';
+        
 
         if (data.temperature !== undefined) {
           const temperatureCelsius = data.temperature;
@@ -242,6 +242,7 @@
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
       }
+      document.getElementById('dsmValue').textContent = data.dsm501aConcentration !== undefined ? data.dsm501aConcentration : 'N/A';
     }
 
     setInterval(fetchData, 5000); // Atualiza os dados a cada 5 segundos
