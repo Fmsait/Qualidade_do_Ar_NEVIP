@@ -232,7 +232,7 @@
         document.getElementById('mq135Value').textContent = data.airQualityPPM !== undefined ? data.airQualityPPM : 'N/A';
         document.getElementById('humidityValue').textContent = data.humidity !== undefined ? data.humidity : 'N/A';
         document.getElementById('pressureValue').textContent = data.pressure !== undefined ? data.pressure : 'N/A';
-        document.getElementById('dsmValue').textContent = data.dsm501a !== undefined ? data.dsm501a : 'N/A';
+        document.getElementById('dsmValue').textContent = data.dsm501aConcentration !== undefined ? data.dsm501aConcentration : 'N/A';
 
         if (data.temperature !== undefined) {
           const temperatureCelsius = data.temperature;
