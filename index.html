@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitoramento Atmosférico</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header, h2{
+      background-color: #007BFF;
+      color: white;
+      padding: 5px;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    main {
+      width: 80%; /* Ou qualquer largura específica */
+      margin: 0 auto; /* Isso centraliza horizontalmente */   
+    }
+    .data-section {
+      width: 90%;
+      height: 7%;
+      margin: auto;
+      padding: 8px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .data-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+    .data-table td:nth-child(1) { background-color: #28a745; }
+    .data-table td:nth-child(2) { background-color: #dc3545; }
+    .data-table td:nth-child(3) { background-color: #ffc107; }
+    .data-table td:nth-child(4) { background-color: #17a2b8; }
+    .data-table td:nth-child(5) { background-color: #6f42c1; }
+    .data-table td:nth-child(6) { background-color: #20c997; }
+    .data-table td:nth-child(7) { background-color: #ff6347; }
+    
+    .content-section {
+      display: flex;
+      width: 90%;
+      height: 85%;
+      margin: auto;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .info-section, .biomas-section {
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow-y: visible;
+    }
+
+    .info-section {
+      width: 100%;
+      height: 90%;
+      margin-right: 10px;
+    }
+    
+    .biomas-section {      
+      text-align: center; 
+      display: flex;
+      flex-direction: row; /* ou grid, se preferir */
+      flex-wrap: wrap; /* Para permitir que as imagens quebrem linha */
+      justify-content: space-around; /* Para espaçar as imagens */
+    } 
+
+    .info-section h1 {
+      background-color: #007BFF;
+      color: white;
+      padding: 5px;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .image-section {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    footer {
+      background-color: #007BFF;
+      color: white;
+      text-align: center;
+      padding: 2px; 
+      margin-top: auto;   
+      bottom: 0;
+      width: 100%;
+      box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
+      
+    }
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Respirando o Brasil: Monitorando a qualidade do ar através dos Biomas - NEVIPI
+  </header>
+
+  <main>
+
+    <div class="data-section">
+      <table class="data-table">
+        <tr>
+      <td>MQ-9 (Gás Monóxido de Carbono): <span id="mq9Value">-</span></td>
+      <td>MQ-135 (Qualidade do Ar): <span id="mq135Value">-</span></td>
+      <td>Umidade (DHT11): <span id="humidityValue">-</span></td>
+      <td>Pressão: <span id="pressureValue">-</span></td>
+      <td>Temperatura: <span id="temperatureValue">-</span></td>
+      <td>Partículas Suspensas (DSM501A): <span id="dsmValue">-</span></td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class="image-section">
+      <h2><strong>MAPA DOS BIOMAS DO BRASIL</h2>
+      <img src="https://atlasescolar.ibge.gov.br/images/mapas/brasil/1920/pag103.jpg" alt="Mapa dos Biomas" usemap="#biomasMap">
+    </div>
+
+    <map name="biomasMap">
+      <area target="" alt="Amazônia" title="Amazonia" href="#amazonia" coords="179,132,156,201,129,280,82,296,59,339,87,379,162,388,203,379,264,393,259,418,290,462,338,464,373,431,419,420,469,444,513,456,545,456,716,224,620,175,581,85,541,120,452,115,404,137,368,114,362,53,295,69,297,103,265,133,229,144" shape="poly">
+      <area target="" alt="Cerrado" title="Cerrado" href="#cerrado" coords="749,483,773,224,711,294,671,303,663,333,659,359,616,412,575,481,460,485,446,529,485,541,504,608,482,651,447,656,448,684,467,686,529,681,599,625,670,661,773,578" shape="poly">
+      <area target="" alt="Pantanal" title="Pantanal" href="#pantanal" coords="401,551,423,545,431,552,468,550,483,585,485,613,479,634,463,635,441,632,435,650,433,664,424,637,439,588" shape="poly">
+      <area target="" alt="Caatinga" title="Caatinga" href="#caatinga" coords="819,238,960,297,957,343,928,385,900,435,853,472,828,512,775,521,764,391,792,263" shape="poly">
+      <area target="" alt="Mata Atlântica" title="Mata Atlântica" href="#mata-atlantica" coords="972,315,978,359,959,400,914,443,892,476,875,490,865,536,862,575,782,714,670,752,634,775,598,879,497,837,531,798,478,716,517,694,570,692,585,648,618,660,616,685,617,728,626,751,671,697,742,647,783,599,799,539,845,508,870,470,918,416,945,375,964,338" shape="poly">
+      <area target="" alt="Pampa" title="Pampa" href="#pampa" coords="492,845,581,884,536,944,454,885" shape="poly">
+    </map>
+
+      <div class="biomas-section">
+         <h1>BIOMAS DO BRASIL</h1>
+        <p id="amazonia"><strong>Bioma da Amazônia:</strong> A Amazônia é uma das maiores e mais biodiversas florestas tropicais do mundo, localizada na região da Bacia Amazônica. É crucial para o equilíbrio climático global e abriga uma infinidade de espécies vegetais e animais.</p>
+        <img src="https://guiadoestudante.abril.com.br/wp-content/uploads/sites/4/2021/09/Amazonia.jpg?quality=100&strip=info&w=1024"  width="500" height="400" alt="Bioma da Amazônia">
+        <p id="cerrado"><strong>Bioma do Cerrado:</strong> O Cerrado é uma vasta savana tropical no Brasil, caracterizada por um clima sazonal com estação seca e chuvosa. É conhecido por sua rica biodiversidade e vegetação adaptada a condições áridas.</p>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsoJHHYn2ODrA87nla_3ZewRfOx3A8Fp34bOm8nYUFimGS3ue4l15DXCoCNn1oa8nPf9c&usqp=CAU" width="500" height="400" alt="Bioma do Cerrado">
+        <p id="caatinga"><strong>Bioma da Caatinga:</strong> A Caatinga é uma região semiárida no nordeste do Brasil, caracterizada por vegetação xerófila adaptada à escassez de água. É um dos poucos biomas exclusivamente brasileiros.</p>
+        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/bioma-caatinga.jpeg" width="500" height="400" alt="Bioma da Caatinga">
+        <p id="mata-atlantica"><strong>Bioma da Mata Atlântica:</strong> A Mata Atlântica é uma floresta tropical que se estende ao longo da costa atlântica do Brasil. É rica em biodiversidade e enfrenta desafios devido à urbanização e desmatamento.</p>
+        <img src="https://www.neoenergia.com/documents/d/guest/mata_atlantica_708x324" width="500" height="400" alt="Bioma da Mata Atlântica">
+        <p id="pampa"><strong>Bioma dos Pampas:</strong> Os Pampas são uma vasta região de pradarias no sul do Brasil, Argentina e Uruguai, caracterizada por um clima temperado e vegetação herbácea.</p>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRejd1fCNDvhsL4D38_Pqhe1Ih6WRcwTjaMKg&s" width="500" height="400" alt="Bioma dos Pampas">
+        <p id="pantanal"><strong>Bioma dos Pantanais:</strong> Os Pantanais são uma região de planícies alagadas no centro-oeste do Brasil, conhecida por sua grande diversidade de flora e fauna aquática e terrestre.</p>
+        <img src="https://s2.static.brasilescola.uol.com.br/be/2020/06/areas-alagadas.jpg"  width="500" height="400" alt="Bioma dos Pantanais">
+      </div>
+    
+
+      <div class="info-section">
+        <h1>QUALIDADE DO AR</h1>
+        <!-- <div>
+          <h3>Umidade do Solo</h3>
+          <p><strong>Definição:</strong> A umidade do solo é a quantidade de água presente no solo. É um fator crucial para a saúde das plantas, influenciando sua capacidade de absorver nutrientes e crescer de forma saudável.</p>
+          <p><strong>Medição:</strong> Normalmente medida com sensores de umidade do solo, que podem funcionar com base em resistividade, capacitância ou tensão de umidade. Sensores resistivos medem a condutividade elétrica entre dois eletrodos enterrados no solo; sensores capacitivos medem a variação na constante dielétrica do solo à medida que a umidade muda.</p>
+          <p><strong>Aplicações:</strong> Monitoramento de irrigação, controle de condições ambientais em estufas e jardins, e gestão de recursos hídricos.</p>
+        </div> -->
+        <div>
+          <h3>MQ-9 (Gás Monóxido de Carbono)</h3>
+          <p><strong>Definição:</strong> O MQ-9 é um sensor que detecta o monóxido de carbono (CO), um gás tóxico e incolor que é um subproduto da queima incompleta de combustíveis. Altas concentrações podem ser prejudiciais à saúde.</p>
+          <p><strong>Medição:</strong> O sensor MQ-9 utiliza uma resistência variável que muda em resposta à concentração de CO no ar. A variação na resistência é então traduzida em uma leitura de concentração de CO.</p>
+          <p><strong>Aplicações:</strong> Detecção de poluição do ar, monitoramento de ambientes internos para segurança, e sistemas de alerta em veículos e indústrias.</p>
+        </div>
+        <!-- <div>
+          <h3>LDR (Luminosidade)</h3>
+          <p><strong>Definição:</strong> LDR (Light Dependent Resistor) é um tipo de resistor cuja resistência varia com a intensidade da luz que incide sobre ele. É usado para medir a luminosidade ou a intensidade da luz.</p>
+          <p><strong>Medição:</strong> A resistência do LDR diminui com o aumento da intensidade da luz. Medindo a resistência ou a corrente através do LDR, pode-se determinar a intensidade luminosa.</p>
+          <p><strong>Aplicações:</strong> Controle automático de iluminação, monitoramento de condições de iluminação em ambientes internos e externos, e em sistemas de detecção de luz.</p>
+        </div> -->
+        <div>
+          <h3>MQ-135 (Qualidade do Ar)</h3>
+          <p><strong>Definição:</strong> O MQ-135 é um sensor de qualidade do ar que detecta uma variedade de poluentes, incluindo amônia (NH3), óxidos de nitrogênio (NOx), benzeno (C6H6), e outras substâncias nocivas.</p>
+          <p><strong>Medição:</strong> Funciona com base na resistência de um elemento sensível ao gás, que varia com a concentração dos poluentes. A leitura da resistência é convertida em uma estimativa da concentração dos gases.</p>
+          <p><strong>Aplicações:</strong> Monitoramento da qualidade do ar em ambientes internos e externos, controle de poluição industrial, e sistemas de alerta para ambientes urbanos.</p>
+        </div>
+        <div>
+          <h3>Umidade (DHT11)</h3>
+          <p><strong>Definição:</strong> O DHT11 é um sensor que mede a umidade relativa do ar e a temperatura. A umidade relativa é a quantidade de vapor d'água presente no ar em relação ao máximo que o ar pode conter a uma dada temperatura.</p>
+          <p><strong>Medição:</strong> O DHT11 usa um sensor capacitivo para medir a umidade e um termistor para medir a temperatura. Os valores são digitalmente convertidos e enviados para o microcontrolador.</p>
+          <p><strong>Aplicações:</strong> Monitoramento de condições ambientais em aplicações domésticas e industriais, controle climático em estufas e ambientes fechados, e coleta de dados meteorológicos.</p>
+        </div>
+        <div>
+          <h3>Pressão</h3>
+          <p><strong>Definição:</strong> A pressão atmosférica é a força exercida pela coluna de ar sobre uma superfície devido ao peso do ar acima dessa superfície. É um fator que influencia o clima e o tempo.</p>
+          <p><strong>Medição:</strong> Medida usando sensores barométricos, que detectam a pressão através da deformação de um diafragma ou por variação na capacitância.</p>
+          <p><strong>Aplicações:</strong> Previsão do tempo, monitoramento de altitude, e controle em sistemas de pressão industrial.</p>
+        </div>
+      </div>  
+  
+  </main>
+
+  <footer>
+<p>OUTRAS FONTES - QUALIDADE DO AR NO BRASIL</p>
+    <a href="https://iema.es.gov.br/qualidadedoar/indicedequalidadedoar" target="_blank">Índice de Qualidade do Ar - IEMA</a>
+    <a href="https://aqicn.org/map/brazil/pt/" target="_blank">Mapa da Qualidade do Ar - AQICN</a>
+    <a href="https://www.aqi.in/pt/dashboard/brazil" target="_blank">Dashboard de Qualidade do Ar - AQI</a>
+  </footer>
+
+  <script>
+    async function fetchData() {
+      try {
+        const response = await fetch('http://192.168.114.1/data'); // Altere para o endereço IP do seu ESP32
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+
+        document.getElementById('mq9Value').textContent = data.coPPM !== undefined ? data.coPPM : 'N/A';     
+        document.getElementById('mq135Value').textContent = data.airQualityPPM !== undefined ? data.airQualityPPM : 'N/A';
+        document.getElementById('humidityValue').textContent = data.humidity !== undefined ? data.humidity : 'N/A';
+        document.getElementById('pressureValue').textContent = data.pressure !== undefined ? data.pressure : 'N/A';
+        document.getElementById('dsmValue').textContent = data.dsm501a !== undefined ? data.dsm501a : 'N/A';
+
+        if (data.temperature !== undefined) {
+          const temperatureCelsius = data.temperature;
+          const temperatureFahrenheit = (temperatureCelsius * 9/5) + 32;
+          document.getElementById('temperatureValue').textContent = `${temperatureCelsius.toFixed(1)}°C / ${temperatureFahrenheit.toFixed(1)}°F`;
+        } else {
+          document.getElementById('temperatureValue').textContent = 'N/A';
+        }
+      } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+      }
+    }
+
+    setInterval(fetchData, 5000); // Atualiza os dados a cada 5 segundos
+  </script>
+</body>
+</html>
