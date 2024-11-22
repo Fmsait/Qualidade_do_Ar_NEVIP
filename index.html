@@ -131,7 +131,7 @@
       <td>MQ-9 (Gás Monóxido de Carbono): <span id="mq9Value">-</span></td>
       <td>MQ-135 (Qualidade do Ar): <span id="mq135Value">-</span></td>
       <td>Umidade (DHT11): <span id="humidityValue">-</span></td>
-      <td>Pressão: <span id="pressureValue">-</span></td>
+      <!-- <td>Pressão: <span id="pressureValue">-</span></td> -->
       <td>Temperatura: <span id="temperatureValue">-</span></td>
       <td>Partículas Suspensas (DSM501A): <span id="dsmValue">-</span></td>
         </tr>
@@ -197,16 +197,16 @@
           <p><strong>Aplicações:</strong> Monitoramento da qualidade do ar em ambientes internos e externos, controle de poluição industrial, e sistemas de alerta para ambientes urbanos.</p>
         </div>
         <div>
-          <h3>Umidade (DHT11)</h3>
+          <h3>Umidade e Temperatura (DHT11)</h3>
           <p><strong>Definição:</strong> O DHT11 é um sensor que mede a umidade relativa do ar e a temperatura. A umidade relativa é a quantidade de vapor d'água presente no ar em relação ao máximo que o ar pode conter a uma dada temperatura.</p>
           <p><strong>Medição:</strong> O DHT11 usa um sensor capacitivo para medir a umidade e um termistor para medir a temperatura. Os valores são digitalmente convertidos e enviados para o microcontrolador.</p>
           <p><strong>Aplicações:</strong> Monitoramento de condições ambientais em aplicações domésticas e industriais, controle climático em estufas e ambientes fechados, e coleta de dados meteorológicos.</p>
         </div>
         <div>
-          <h3>Pressão</h3>
-          <p><strong>Definição:</strong> A pressão atmosférica é a força exercida pela coluna de ar sobre uma superfície devido ao peso do ar acima dessa superfície. É um fator que influencia o clima e o tempo.</p>
-          <p><strong>Medição:</strong> Medida usando sensores barométricos, que detectam a pressão através da deformação de um diafragma ou por variação na capacitância.</p>
-          <p><strong>Aplicações:</strong> Previsão do tempo, monitoramento de altitude, e controle em sistemas de pressão industrial.</p>
+          <h3>Particulas Suspensas (DSM501A)</h3>
+          <p><strong>Definição:</strong> O DSM501A é um sensor que detecta a concentração de partículas no ar, como poeira fina, fumaça e poluição. Ele utiliza um feixe de luz infravermelho para identificar partículas suspensas e fornece saídas digitais proporcionais à densidade de partículas.</p>
+          <p><strong>Medição:</strong> O sensor mede partículas de aproximadamente 1 µm, 2,5 µm (PM2.5) e 10 µm (PM10) de diâmetro. Ele funciona enviando um feixe de luz infravermelha que é refletido pelas partículas presentes no ar. O tempo em nível alto dos pulsos na saída (PWM) é proporcional à concentração de partículas, permitindo calcular a poluição em microgramas por metro cúbico (µg/m³).</p>
+          <p><strong>Aplicações:</strong> Monitoramento da qualidade do ar em ambientes internos e externos, integração em purificadores de ar para controle automático, sistemas de automação residencial, dispositivos de saúde ambiental, e em projetos educacionais e de pesquisa sobre poluição atmosférica.</p>
         </div>
       </div>  
   
